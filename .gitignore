@@ -22,3 +22,8 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# Live-site archive — local-only, never push (Clockwork9's content/media;
+# repo is public and Stevie hasn't signed off on anything yet).
+# Mirrors the Fresh Beginnings playbook. Content source of truth for the rebuild.
+scrape/
