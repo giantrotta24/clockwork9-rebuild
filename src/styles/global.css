@@ -1,0 +1,10 @@
+@import 'tailwindcss';
+
+/*
+  Clockwork9 brand tokens — sourced from the live site (scrape/ is the
+  source of truth; audit these against the scraped stylesheets before use).
+  Player accent seen in Vimeo embed params: #F26739.
+*/
+@theme {
+  --color-c9-orange: #f26739;
+}
