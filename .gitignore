@@ -27,3 +27,7 @@ pnpm-debug.log*
 # repo is public and Stevie hasn't signed off on anything yet).
 # Mirrors the Fresh Beginnings playbook. Content source of truth for the rebuild.
 scrape/
+
+# Pitch deck — local-only, never push (contains private business figures
+# Stevie shared in confidence; repo is public).
+docs/pitch/
