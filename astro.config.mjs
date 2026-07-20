@@ -6,8 +6,8 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   site: 'https://clockwork9.com',
   redirects: {
-    // Duplicate of cavs-cleveland-art-museum on the live site (same title +
-    // gallery, different URL); linked from the old homepage grid.
+    // The live site 301s this old slug (WP slug rename) and the old homepage
+    // grid links through it — preserve the redirect for any external links.
     '/work/found-surface-cavs/': '/work/cavs-cleveland-art-museum/',
   },
   vite: {
