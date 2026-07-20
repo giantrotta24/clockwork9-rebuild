@@ -1,0 +1,96 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+  eager?: boolean;
+}
+
+const { post, eager = false } = Astro.props;
+const { title, category, date, hero, heroAlt, excerpt } = post.data;
+const slug = post.id.replace(/\/index$/, '');
+const href = `/blog/${category}/${slug}/`;
+
+const categoryLabel = category.replace('-', ' ');
+const dateLabel = date.toLocaleDateString('en-US', {
+  month: 'long',
+  day: 'numeric',
+  year: 'numeric',
+  timeZone: 'UTC',
+});
+---
+
+<a href={href} class="blog-card">
+  {hero && (
+    <div class="blog-thumbnail">
+      <Image
+        src={hero}
+        alt={heroAlt}
+        widths={[400, 700]}
+        sizes="(max-width: 720px) 100vw, 33vw"
+        loading={eager ? 'eager' : 'lazy'}
+      />
+    </div>
+  )}
+  <div class="blog-content">
+    <p class="blog-meta">{categoryLabel} • {dateLabel}</p>
+    <h2 class="blog-title">{title}</h2>
+    <p class="blog-excerpt">{excerpt}</p>
+    <span class="blog-read-more" aria-hidden="true">Read more →</span>
+  </div>
+</a>
+
+<style>
+  .blog-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--color-c9-raise);
+    border: 1px solid var(--color-c9-line);
+    text-decoration: none;
+    color: var(--color-c9-cream);
+    overflow: hidden;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+  }
+  .blog-card:hover { border-color: var(--color-c9-orange); transform: translateY(-2px); }
+
+  .blog-thumbnail { aspect-ratio: 16 / 9; overflow: hidden; }
+  .blog-thumbnail img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  .blog-content { display: flex; flex-direction: column; gap: 0.8rem; padding: 1.4rem; flex: 1; }
+  .blog-meta {
+    font-family: var(--font-label);
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-c9-orange);
+  }
+  .blog-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.15rem;
+    line-height: 1.3;
+    text-transform: lowercase;
+  }
+  .blog-excerpt {
+    color: var(--ink-muted);
+    font-size: 0.92rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .blog-read-more {
+    margin-top: auto;
+    font-family: var(--font-label);
+    font-size: 0.74rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+  .blog-card:hover .blog-read-more { color: var(--color-c9-orange); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .blog-card { transition: none; }
+  }
+</style>

@@ -103,3 +103,33 @@ body {
   letter-spacing: 0.2em;
   text-transform: uppercase;
 }
+
+/* Blog card grid + pagination — shared by blog index, page/N, category
+   archives, and the post template's Read More section */
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  padding: 3rem clamp(1.25rem, 4vw, 2.5rem) 0;
+}
+@media (max-width: 1000px) { .blog-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px) { .blog-grid { grid-template-columns: 1fr; } }
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3.5rem;
+  font-family: var(--font-label);
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+}
+.pagination a { color: var(--color-c9-cream); text-decoration: none; padding: 0.4rem 0.7rem; }
+.pagination a:hover { color: var(--color-c9-orange); }
+.pagination .page-current {
+  color: var(--color-c9-orange);
+  border: 1.5px solid var(--color-c9-orange);
+  border-radius: 6px;
+  padding: 0.4rem 0.7rem;
+}

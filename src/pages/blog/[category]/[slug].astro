@@ -1,0 +1,163 @@
+---
+import { getCollection, render } from 'astro:content';
+import { Image } from 'astro:assets';
+import Base from '../../../layouts/Base.astro';
+import BlogCard from '../../../components/BlogCard.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: {
+      category: post.data.category,
+      slug: post.id.replace(/\/index$/, ''),
+    },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const { title, description, date, author, category, hero, heroAlt } = post.data;
+
+const dateLabel = date.toLocaleDateString('en-US', {
+  month: '2-digit',
+  day: '2-digit',
+  year: 'numeric',
+  timeZone: 'UTC',
+});
+
+// "Read More from C9" — actually related this time: latest from the same
+// category (excluding this post), topped up with recent posts overall.
+const all = (await getCollection('blog'))
+  .filter((p) => p.id !== post.id)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const sameCategory = all.filter((p) => p.data.category === category);
+const related = [...sameCategory, ...all.filter((p) => p.data.category !== category)].slice(0, 3);
+---
+
+<Base title={`${title} — Clockwork 9`} description={description}>
+  <article class="post">
+    <header class="post-header">
+      <h1>{title}</h1>
+      <p class="byline">
+        {author}&nbsp;|&nbsp;<time datetime={date.toISOString().slice(0, 10)}>{dateLabel}</time>
+      </p>
+    </header>
+
+    {hero && (
+      <div class="post-hero">
+        <Image src={hero} alt={heroAlt} widths={[720, 1080, 1440]} sizes="(max-width: 900px) 100vw, 60rem" loading="eager" />
+      </div>
+    )}
+
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+
+  <aside class="read-more" aria-labelledby="read-more-heading">
+    <h2 class="read-more-heading" id="read-more-heading">Read more from C9</h2>
+    <div class="blog-grid read-more-grid">
+      {related.map((p) => <BlogCard post={p} />)}
+    </div>
+  </aside>
+</Base>
+
+<style>
+  .post {
+    max-width: 60rem;
+    margin-inline: auto;
+    padding: clamp(3rem, 6vw, 5rem) clamp(1.25rem, 4vw, 2.5rem) 0;
+  }
+  /* theme: .single-post .entry-title — plain cream, moby 400 */
+  .post-header h1 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(1.8rem, 3.8vw, 3.1rem);
+    line-height: 1.2;
+    color: var(--color-c9-cream);
+  }
+  /* theme: .name-of-author — italic, 16px, 0.7 opacity */
+  .byline {
+    margin-top: 1rem;
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--color-c9-cream);
+    opacity: 0.7;
+  }
+
+  .post-hero { margin-top: 2rem; }
+  .post-hero img { width: 100%; height: auto; display: block; border-radius: 8px; }
+
+  .read-more {
+    max-width: 72rem;
+    margin: 5rem auto 0;
+    padding-inline: clamp(1.25rem, 4vw, 2.5rem);
+  }
+  .read-more-heading {
+    font-family: var(--font-label);
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1.6rem;
+  }
+  .read-more-grid { padding: 0; }
+</style>
+
+<style is:global>
+  /* theme: .entry-content p has no font-family, so the live site renders a
+     default serif — that rendered look is the fidelity target */
+  .prose {
+    margin-top: 2.5rem;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: var(--color-c9-cream);
+    opacity: 0.9;
+  }
+  .prose > * + * { margin-top: 1.4em; }
+  .prose h2,
+  .prose h3 {
+    line-height: 1.3;
+    margin-top: 2em;
+    opacity: 1;
+  }
+  .prose h2 { font-family: var(--font-display); font-weight: 400; font-size: 2rem; }
+  .prose h3 { font-family: var(--font-label); font-weight: 600; font-size: 1.5rem; }
+  .prose a {
+    color: var(--color-c9-orange);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .prose a:hover { color: var(--color-c9-cream); }
+  .prose img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-block: 0.5em;
+  }
+  .prose ul,
+  .prose ol { padding-left: 1.4em; }
+  .prose li + li { margin-top: 0.4em; }
+  .prose blockquote {
+    border-left: 3px solid var(--color-c9-orange);
+    padding-left: 1.2em;
+    font-style: italic;
+    color: var(--ink-muted);
+  }
+  .prose iframe {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    height: auto;
+    border: 0;
+    border-radius: 8px;
+    margin-block: 0.5em;
+  }
+  .prose figure figcaption {
+    font-size: 0.85rem;
+    color: var(--ink-muted);
+    font-style: italic;
+    margin-top: 0.5em;
+  }
+</style>

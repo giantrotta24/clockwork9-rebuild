@@ -1,0 +1,30 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../../layouts/Base.astro';
+import BlogHeader from '../../../components/BlogHeader.astro';
+import BlogCard from '../../../components/BlogCard.astro';
+
+export async function getStaticPaths() {
+  const posts = (await getCollection('blog')).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+  const categories = [...new Set(posts.map((p) => p.data.category))];
+  return categories.map((category) => ({
+    params: { category },
+    props: { posts: posts.filter((p) => p.data.category === category), category },
+  }));
+}
+
+const { posts, category } = Astro.props;
+const label = category.replace('-', ' ');
+const title = label.replace(/\b\w/g, (c) => c.toUpperCase());
+---
+
+<Base
+  title={`${title} — Blog — Clockwork 9`}
+  description={`${title} posts from the Clockwork 9 blog — insights, tips, and stories from the world of video production.`}
+>
+  <BlogHeader active={category} />
+
+  <section class="blog-grid">
+    {posts.map((post, i) => <BlogCard post={post} eager={i < 3} />)}
+  </section>
+</Base>

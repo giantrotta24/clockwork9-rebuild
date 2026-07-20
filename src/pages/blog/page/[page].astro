@@ -1,0 +1,48 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../../layouts/Base.astro';
+import BlogHeader from '../../../components/BlogHeader.astro';
+import BlogCard from '../../../components/BlogCard.astro';
+
+const PER_PAGE = 20;
+
+export async function getStaticPaths() {
+  const posts = (await getCollection('blog')).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+  const totalPages = Math.ceil(posts.length / 20);
+  // page 1 lives at /blog/ — only emit 2..n here
+  return Array.from({ length: totalPages - 1 }, (_, i) => {
+    const page = i + 2;
+    return {
+      params: { page: String(page) },
+      props: { posts: posts.slice((page - 1) * 20, page * 20), page, totalPages },
+    };
+  });
+}
+
+const { posts, page, totalPages } = Astro.props;
+
+const pageHref = (n: number) => (n === 1 ? '/blog/' : `/blog/page/${n}/`);
+---
+
+<Base
+  title={`Blog — page ${page} — Clockwork 9`}
+  description={`Insights, tips, and stories from the world of video production — the Clockwork 9 blog, page ${page}.`}
+>
+  <BlogHeader active="all" />
+
+  <section class="blog-grid">
+    {posts.map((post, i) => <BlogCard post={post} eager={i < 3} />)}
+  </section>
+
+  <nav class="pagination" aria-label="Posts pagination">
+    <a href={pageHref(page - 1)} class="page-link">← Prev</a>
+    {Array.from({ length: totalPages }, (_, i) => i + 1).map((n) =>
+      n === page ? (
+        <span class="page-current" aria-current="page">{n}</span>
+      ) : (
+        <a href={pageHref(n)} class="page-link">{n}</a>
+      )
+    )}
+    {page < totalPages && <a href={pageHref(page + 1)} class="page-link">Next →</a>}
+  </nav>
+</Base>

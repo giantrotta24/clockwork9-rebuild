@@ -71,10 +71,11 @@ const related = await Promise.all(
   .project-header {
     padding: clamp(3rem, 7vw, 5.5rem) clamp(1.25rem, 4vw, 2.5rem) 0;
   }
+  /* theme: .project-title — moby 400, 135deg cream→orange gradient */
   .project-header h1 {
-    font-size: clamp(2.2rem, 5.4vw, 4.4rem);
-    text-transform: lowercase;
-    background: linear-gradient(90deg, var(--color-c9-cream) 0%, var(--color-c9-orange) 90%);
+    font-weight: 400;
+    font-size: clamp(2.2rem, 5.4vw, 4.1rem);
+    background: linear-gradient(135deg, var(--color-c9-cream) 0%, var(--color-c9-orange) 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;

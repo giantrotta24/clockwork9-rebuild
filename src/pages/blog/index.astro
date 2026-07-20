@@ -1,0 +1,36 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import BlogHeader from '../../components/BlogHeader.astro';
+import BlogCard from '../../components/BlogCard.astro';
+
+export const PER_PAGE = 20;
+
+const posts = (await getCollection('blog')).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const pagePosts = posts.slice(0, PER_PAGE);
+const totalPages = Math.ceil(posts.length / PER_PAGE);
+---
+
+<Base
+  title="Blog — Clockwork 9"
+  description="Insights, tips, and stories from the world of video production — the Clockwork 9 blog."
+>
+  <BlogHeader active="all" />
+
+  <section class="blog-grid">
+    {pagePosts.map((post, i) => <BlogCard post={post} eager={i < 3} />)}
+  </section>
+
+  {totalPages > 1 && (
+    <nav class="pagination" aria-label="Posts pagination">
+      <span class="page-current" aria-current="page">1</span>
+      {Array.from({ length: totalPages - 1 }, (_, i) => (
+        <a href={`/blog/page/${i + 2}/`} class="page-link">{i + 2}</a>
+      ))}
+      <a href="/blog/page/2/" class="page-link">Next →</a>
+    </nav>
+  )}
+</Base>
+
+<!-- .blog-grid and .pagination styles live in global.css — shared with
+     page/[page], category archives, and the post template's Read More grid -->
