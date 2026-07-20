@@ -1,0 +1,106 @@
+---
+const buildYear = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="footer-content">
+    <div class="footer-left">
+      <address class="footer-contact">
+        <div class="footer-contact-item">
+          <strong>→ Email</strong>
+          <a href="mailto:contact@clockwork9.com">contact@clockwork9.com</a>
+        </div>
+        <div class="footer-contact-item">
+          <strong>→ Address</strong>
+          3800 Lakeside Ave Suite 202<br />Cleveland, OH 44113
+        </div>
+        <div class="footer-contact-item">
+          <strong>→ Phone</strong>
+          <a href="tel:+12166540095">216.654.0095</a>
+        </div>
+      </address>
+    </div>
+
+    <nav class="footer-nav" aria-label="Footer">
+      <a href="/work">Work</a>
+      <a href="/blog">Blog</a>
+      <a href="/#contact">Contact</a>
+      <a href="https://instagram.com/clockwork9" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.linkedin.com/company/clockwork9" target="_blank" rel="noopener">LinkedIn</a>
+    </nav>
+  </div>
+
+  <div class="footer-bottom">
+    <!-- Rendered at build time, corrected client-side: this footer knows what year it is. -->
+    <div class="footer-copyright"><span data-year>{buildYear}</span>© All rights reserved</div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--color-c9-cream);
+    padding: 3.5rem 2rem 2rem;
+    margin-top: 6rem;
+  }
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 3rem;
+    flex-wrap: wrap-reverse;
+  }
+  .footer-contact {
+    font-style: normal;
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
+    font-size: 0.92rem;
+    color: var(--ink-muted);
+  }
+  .footer-contact-item strong {
+    display: block;
+    color: var(--color-c9-orange);
+    font-family: var(--font-label);
+    font-size: 0.74rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+  }
+  .footer-contact a { color: var(--color-c9-cream); text-decoration: none; }
+  .footer-contact a:hover { color: var(--color-c9-orange); }
+
+  .footer-nav { display: flex; gap: 2rem; flex-wrap: wrap; }
+  .footer-nav a {
+    font-family: var(--font-label);
+    font-size: 0.76rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-c9-cream);
+    text-decoration: none;
+  }
+  .footer-nav a:hover { color: var(--color-c9-orange); }
+
+  .footer-bottom {
+    margin-top: 3rem;
+    padding-top: 1.4rem;
+    border-top: 1px solid var(--color-c9-line);
+  }
+  .footer-copyright {
+    font-family: var(--font-label);
+    font-size: 0.74rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+
+  @media (max-width: 720px) {
+    .footer-content { flex-direction: column-reverse; }
+  }
+</style>
+
+<script>
+  const y = document.querySelector('[data-year]');
+  if (y) y.textContent = String(new Date().getFullYear());
+</script>

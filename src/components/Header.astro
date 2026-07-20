@@ -1,0 +1,115 @@
+---
+import logo from '../assets/logo-c9-grey.svg';
+---
+
+<header class="site-header">
+  <a href="/" class="site-logo" aria-label="Clockwork 9 — home">
+    <img src={logo.src} alt="" width="40" height="40" loading="eager" />
+  </a>
+
+  <nav class="header-nav" aria-label="Primary">
+    <a href="/work">Work</a>
+    <a href="/blog">Blog</a>
+    <a href="/#contact">Connect</a>
+  </nav>
+
+  <button class="menu-toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="Menu">
+    <span class="hamburger-line"></span>
+    <span class="hamburger-line"></span>
+    <span class="hamburger-line"></span>
+  </button>
+</header>
+
+<nav class="mobile-nav" id="mobile-nav" aria-label="Primary mobile" hidden>
+  <a href="/work">Work</a>
+  <a href="/blog">Blog</a>
+  <a href="/#contact">Connect</a>
+</nav>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 66px;
+    padding: 0 2rem;
+    background: rgba(16, 16, 15, 0.92);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--color-c9-cream);
+  }
+
+  .site-logo { display: inline-flex; }
+
+  .header-nav { display: flex; gap: 2.5rem; }
+  .header-nav a,
+  .mobile-nav a {
+    font-family: var(--font-label);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-c9-cream);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  .header-nav a:hover,
+  .mobile-nav a:hover { color: var(--color-c9-orange); }
+
+  .menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: 0;
+    padding: 0.5rem;
+    cursor: pointer;
+  }
+  .hamburger-line {
+    width: 22px;
+    height: 2px;
+    background: var(--color-c9-cream);
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+  .menu-toggle[aria-expanded='true'] .hamburger-line:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .menu-toggle[aria-expanded='true'] .hamburger-line:nth-child(2) { opacity: 0; }
+  .menu-toggle[aria-expanded='true'] .hamburger-line:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .mobile-nav {
+    position: sticky;
+    top: 66px;
+    z-index: 49;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 2rem;
+    background: var(--color-c9-bg);
+    border-bottom: 1px solid var(--color-c9-line);
+  }
+
+  @media (max-width: 720px) {
+    .header-nav { display: none; }
+    .menu-toggle { display: flex; }
+  }
+  @media (min-width: 721px) {
+    .mobile-nav { display: none !important; }
+  }
+</style>
+
+<script>
+  const toggle = document.querySelector('.menu-toggle');
+  const nav = document.getElementById('mobile-nav');
+  toggle?.addEventListener('click', () => {
+    const open = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!open));
+    if (nav) nav.hidden = open;
+  });
+  nav?.addEventListener('click', (e) => {
+    if ((e.target as HTMLElement).tagName === 'A') {
+      toggle?.setAttribute('aria-expanded', 'false');
+      if (nav) nav.hidden = true;
+    }
+  });
+</script>

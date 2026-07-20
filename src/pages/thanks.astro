@@ -1,0 +1,25 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Message sent — Clockwork 9" description="Your message is on its way to Clockwork 9.">
+  <section class="thanks">
+    <h1 class="display display-grad">Message sent</h1>
+    <p>The creative gears are spinning. We’ll get back to you soon.</p>
+    <a class="pill" href="/">« Back home</a>
+  </section>
+</Base>
+
+<style>
+  .thanks {
+    min-height: 55vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 1.6rem;
+    padding: clamp(1.25rem, 4vw, 2.5rem);
+  }
+  .thanks h1 { font-size: clamp(2.2rem, 5.5vw, 4rem); text-transform: uppercase; }
+  .thanks p { color: var(--ink-muted); }
+</style>

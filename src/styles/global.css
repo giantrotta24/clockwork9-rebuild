@@ -1,10 +1,105 @@
 @import 'tailwindcss';
 
 /*
-  Clockwork9 brand tokens — sourced from the live site (scrape/ is the
-  source of truth; audit these against the scraped stylesheets before use).
-  Player accent seen in Vimeo embed params: #F26739.
+  Clockwork9 brand tokens — sourced from the live theme
+  (scrape/assets/wp-content/themes/clockwork9/style.css).
 */
 @theme {
+  --color-c9-bg: #10100f;
+  --color-c9-raise: #1a1a1a;
+  --color-c9-line: #2a2a2a;
+  --color-c9-cream: #f1f1d1;
   --color-c9-orange: #f26739;
+
+  --font-display: 'moby', ui-monospace, 'SF Mono', Menlo, monospace;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-label: 'Archivo', system-ui, sans-serif;
+}
+
+:root {
+  --ink-muted: rgba(241, 241, 209, 0.65);
+}
+
+html {
+  background: var(--color-c9-bg);
+  scroll-behavior: smooth;
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+body {
+  background: var(--color-c9-bg);
+  color: var(--color-c9-cream);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection { background: var(--color-c9-orange); color: var(--color-c9-bg); }
+
+:focus-visible {
+  outline: 2px solid var(--color-c9-orange);
+  outline-offset: 3px;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -3rem;
+  z-index: 100;
+  background: var(--color-c9-orange);
+  color: var(--color-c9-bg);
+  font-family: var(--font-label);
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.5rem 1rem;
+  transition: top 0.15s ease;
+}
+.skip-link:focus { top: 1rem; }
+
+/* Display headings — the moby treatment */
+.display {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+}
+
+.display-grad {
+  background: linear-gradient(90deg, var(--color-c9-cream) 0%, var(--color-c9-orange) 90%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Pill button — mirrors the site's CONNECT » control */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-label);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-c9-cream);
+  background: transparent;
+  border: 1.5px solid var(--color-c9-cream);
+  border-radius: 999px;
+  padding: 0.7rem 1.6rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.pill:hover { color: var(--color-c9-orange); border-color: var(--color-c9-orange); }
+
+/* Eyebrow / label type */
+.label {
+  font-family: var(--font-label);
+  font-size: 0.74rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
 }

@@ -1,16 +1,351 @@
 ---
-import '../styles/global.css';
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import VimeoEmbed from '../components/VimeoEmbed.astro';
+
+import progressive from '../assets/logos/progressive-logo.png';
+import plex from '../assets/logos/plex-logo.png';
+import livenation from '../assets/logos/livenation-logo.png';
+import feld from '../assets/logos/feld-logo.png';
+import ey from '../assets/logos/ey-logo-alien-1.png';
+import nike from '../assets/logos/nike-logo.png';
+import fanatics from '../assets/logos/fanatics-logo.png';
+import nidec from '../assets/logos/nidec-logo.png';
+
+import granHome from '../assets/work/gran-home-c9.jpg';
+import progressiveLife from '../assets/work/progressive-life-insurance.jpg';
+import fsHome from '../assets/work/fs-home-c9.jpg';
+import katzHome from '../assets/work/katz-home-c9.jpg';
+import reelHome from '../assets/work/reel-home-c9.jpg';
+import clePrint from '../assets/work/cle-print-co-home-c9.jpg';
+import compost from '../assets/work/compost-site-thumb-scaled.jpg';
+import eyHome from '../assets/work/ey-home-c9.jpg';
+
+const logos = [
+  { img: progressive, alt: 'Progressive' },
+  { img: plex, alt: 'Plex' },
+  { img: livenation, alt: 'Live Nation' },
+  { img: feld, alt: 'Feld' },
+  { img: ey, alt: 'Ernst & Young' },
+  { img: nike, alt: 'Nike' },
+  { img: fanatics, alt: 'Fanatics' },
+  { img: nidec, alt: 'Nidec' },
+];
+
+const featured = [
+  { href: '/work/found-surface-cavs/', img: granHome, label: 'Found Surface & Cavs' },
+  { href: '/work/progressive-life-insurance/', img: progressiveLife, label: 'Progressive Life Insurance' },
+  { href: '/work/found-surface/', img: fsHome, label: 'Found Surface' },
+  { href: '/work/aotl-05-doug-katz/', img: katzHome, label: 'AOTL: Doug Katz' },
+  { href: '/work/c9-live-event-reel/', img: reelHome, label: 'Live Event Reel' },
+  { href: '/work/aotl-03-cleveland-print-co/', img: clePrint, label: 'AOTL: CLE Print Co' },
+  { href: '/work/rust-belt-riders/', img: compost, label: 'Rust Belt Riders' },
+  { href: '/work/ernst-young/', img: eyHome, label: 'Ernst & Young' },
+];
+
+const stats = [
+  { number: '10+', label: 'years in business' },
+  { number: '1,000+', label: 'clients served' },
+  { number: '10,000+', label: 'deliverables produced' },
+];
+
+const budgets = ['Under $10k', '$10k to $25k', '$25k to $50k', '$50k to $100k', 'Over $100k', "Let's Discuss"];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Clockwork9 — rebuild scaffold</title>
-	</head>
-	<body>
-		<h1 class="text-c9-orange">Clockwork9 rebuild — scaffold OK</h1>
-	</body>
-</html>
+<Base
+  title="Cleveland Video Production Company & Creative Agency"
+  description="Clockwork 9 is an independent Cleveland video agency producing cinematic visuals, documentary-style films, and high-impact video for brands like Nike, EY, and the Cleveland Orchestra."
+>
+  <!-- Hero -->
+  <section class="hero">
+    <h1 class="display display-grad">Video production<br />+ editing studio</h1>
+    <div class="hero-row">
+      <p class="hero-copy">
+        Clockwork 9 is an independent video agency comprised of passionate producers and creatives. We
+        excel at cinematic visuals, documentary-style films, and high-impact video production of all
+        kinds.
+      </p>
+      <a class="pill" href="#contact">Connect »</a>
+    </div>
+  </section>
+
+  <!-- Reel -->
+  <section class="home-video" aria-label="Featured reel">
+    <VimeoEmbed id="1054202839" title="Clockwork 9 reel" />
+  </section>
+
+  <!-- Statement -->
+  <section class="statement">
+    <p>
+      We produce <em class="statement-pop">visually striking</em> video content that <strong>connects with audiences</strong> and <em>drives action</em>
+    </p>
+  </section>
+
+  <!-- Client logos -->
+  <section class="home-logos" aria-labelledby="logos-heading">
+    <p class="logos-heading" id="logos-heading">Logo soup for the corporate soul</p>
+    <ul class="logo-grid">
+      {logos.map(({ img, alt }) => (
+        <li><Image src={img} alt={alt} height={44} densities={[1, 2]} /></li>
+      ))}
+    </ul>
+  </section>
+
+  <!-- Stats -->
+  <section class="stats-grid" aria-label="Studio stats">
+    {stats.map(({ number, label }) => (
+      <div class="stat-box">
+        <p class="stat-number">{number}</p>
+        <p class="stat-label">{label}</p>
+      </div>
+    ))}
+  </section>
+
+  <!-- Featured work -->
+  <section class="img-grid" aria-label="Featured work">
+    {featured.map(({ href, img, label }) => (
+      <a href={href} class="img-link">
+        <Image src={img} alt="" widths={[480, 720, 1080]} sizes="(max-width: 720px) 100vw, 50vw" />
+        <span class="img-label">{label}</span>
+      </a>
+    ))}
+  </section>
+
+  <!-- Contact -->
+  <section class="contact-section" id="contact" aria-labelledby="contact-heading">
+    <div class="contact-cta">
+      <h2 class="display" id="contact-heading">Ready to make something epic?</h2>
+      <p class="contact-sub">
+        Let’s turn your vision into reality. Drop us a line and we’ll get the creative gears spinning.
+      </p>
+    </div>
+
+    <form
+      class="contact-form"
+      name="contact"
+      method="POST"
+      action="/thanks/"
+      data-netlify="true"
+      netlify-honeypot="bot-field"
+    >
+      <p class="hidden" aria-hidden="true">
+        <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
+      </p>
+      <input type="hidden" name="form-name" value="contact" />
+
+      <div class="form-grid">
+        <div class="field">
+          <label for="f-name">Name<span class="req" aria-hidden="true">*</span></label>
+          <input id="f-name" name="name" type="text" autocomplete="name" required />
+        </div>
+        <div class="field">
+          <label for="f-email">Email<span class="req" aria-hidden="true">*</span></label>
+          <input id="f-email" name="email" type="email" autocomplete="email" required />
+        </div>
+        <div class="field">
+          <label for="f-company">Company</label>
+          <input id="f-company" name="company" type="text" autocomplete="organization" />
+        </div>
+        <div class="field">
+          <label for="f-phone">Phone</label>
+          <input id="f-phone" name="phone" type="tel" autocomplete="tel" />
+        </div>
+        <div class="field">
+          <label for="f-budget">Budget Range</label>
+          <select id="f-budget" name="budget">
+            {budgets.map((b) => <option value={b}>{b}</option>)}
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-quiz">What is 1 + 1?<span class="req" aria-hidden="true">*</span></label>
+          <input id="f-quiz" name="quiz" type="text" inputmode="numeric" required />
+        </div>
+        <div class="field field-full">
+          <label for="f-message">Tell us about your project<span class="req" aria-hidden="true">*</span></label>
+          <textarea
+            id="f-message"
+            name="message"
+            rows="6"
+            required
+            placeholder="What’s your vision? What story do you want to tell? Any specific requirements or deadlines?"
+          ></textarea>
+        </div>
+      </div>
+
+      <button class="pill" type="submit">Submit</button>
+    </form>
+  </section>
+</Base>
+
+<style>
+  section { padding-inline: clamp(1.25rem, 4vw, 2.5rem); }
+
+  /* Hero */
+  .hero { padding-top: clamp(3rem, 8vw, 6.5rem); }
+  .hero h1 { font-size: clamp(2.4rem, 6.4vw, 5.2rem); text-transform: uppercase; }
+  .hero-row {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 3rem;
+    margin-top: 2.5rem;
+    flex-wrap: wrap;
+  }
+  .hero-copy { max-width: 34em; color: var(--ink-muted); font-size: 1.05rem; }
+
+  /* Reel */
+  .home-video { margin-top: 3.5rem; }
+
+  /* Statement */
+  .statement { margin-top: 6rem; text-align: center; }
+  .statement p {
+    max-width: 30em;
+    margin-inline: auto;
+    font-size: clamp(1.3rem, 2.6vw, 1.9rem);
+    line-height: 1.45;
+    font-weight: 600;
+  }
+  .statement em { font-style: italic; font-weight: 400; }
+  .statement-pop {
+    font-family: var(--font-display);
+    font-style: normal;
+    font-weight: 700;
+    color: var(--color-c9-orange);
+    text-transform: lowercase;
+    letter-spacing: 0.02em;
+  }
+
+  /* Logos */
+  .home-logos { margin-top: 6rem; border-top: 1px solid var(--color-c9-line); padding-top: 3rem; }
+  .logos-heading {
+    text-align: center;
+    font-style: italic;
+    color: var(--ink-muted);
+    margin-bottom: 2.5rem;
+  }
+  .logo-grid {
+    list-style: none;
+    margin: 0;
+    padding: 1.25rem;
+    display: grid;
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+    gap: 2.5rem;
+    align-items: center;
+  }
+  .logo-grid li { display: grid; place-items: center; }
+  .logo-grid img { width: auto; max-width: 100%; height: auto; max-height: 44px; object-fit: contain; }
+  @media (max-width: 900px) {
+    .logo-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  }
+  @media (max-width: 560px) {
+    .logo-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 3rem; }
+  }
+
+  /* Stats */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 4rem;
+  }
+  .stat-box {
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-top: 1px solid var(--color-c9-cream);
+    border-bottom: 1px solid var(--color-c9-cream);
+  }
+  .stat-box + .stat-box { border-left: 1px solid var(--color-c9-cream); }
+  .stat-number {
+    font-size: clamp(2.6rem, 5vw, 4.4rem);
+    font-weight: 600;
+    transition: color 0.3s ease;
+  }
+  .stat-box:hover .stat-number { color: var(--color-c9-orange); }
+  .stat-label { font-style: italic; color: var(--ink-muted); }
+  @media (max-width: 720px) {
+    .stats-grid { grid-template-columns: 1fr; }
+    .stat-box { height: 200px; }
+    .stat-box + .stat-box { border-left: 0; border-top: 0; }
+  }
+
+  /* Featured work grid */
+  .img-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-top: 4rem;
+  }
+  .img-link { position: relative; display: block; overflow: hidden; }
+  .img-link img { width: 100%; height: auto; display: block; transition: transform 0.3s ease; }
+  .img-link:hover img { transform: scale(1.02); }
+  .img-label {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 2.5rem 1.25rem 1rem;
+    background: linear-gradient(transparent, rgba(16, 16, 15, 0.85));
+    color: var(--color-c9-cream);
+    font-family: var(--font-label);
+    font-size: 0.9rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  @media (max-width: 720px) {
+    .img-grid { grid-template-columns: 1fr; }
+  }
+
+  /* Contact */
+  .contact-section { margin-top: 7rem; }
+  .contact-cta { text-align: center; margin-bottom: 4rem; }
+  .contact-cta h2 {
+    font-size: clamp(1.9rem, 4.6vw, 3.4rem);
+    text-transform: lowercase;
+    color: var(--color-c9-orange);
+  }
+  .contact-sub { font-style: italic; color: var(--ink-muted); margin-top: 1rem; }
+
+  .contact-form { max-width: 46rem; margin-inline: auto; }
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.6rem 2rem;
+  }
+  .field { display: flex; flex-direction: column; gap: 0.45rem; }
+  .field-full { grid-column: 1 / -1; }
+  .field label {
+    font-family: var(--font-label);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .req { color: var(--color-c9-orange); margin-left: 0.15rem; }
+  .field input,
+  .field select,
+  .field textarea {
+    background: var(--color-c9-raise);
+    border: 1px solid var(--color-c9-line);
+    border-radius: 8px;
+    color: var(--color-c9-cream);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    padding: 0.65rem 0.8rem;
+  }
+  .field textarea::placeholder { color: rgba(241, 241, 209, 0.35); }
+  .field input:focus-visible,
+  .field select:focus-visible,
+  .field textarea:focus-visible {
+    outline: 2px solid var(--color-c9-orange);
+    outline-offset: 1px;
+  }
+  .contact-form .pill { margin-top: 2rem; }
+  .hidden { display: none; }
+
+  @media (max-width: 640px) {
+    .form-grid { grid-template-columns: 1fr; }
+  }
+</style>
