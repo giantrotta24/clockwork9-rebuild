@@ -1,0 +1,101 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+import work from '../../data/work.json';
+
+const thumbs = import.meta.glob<{ default: ImageMetadata }>('../../assets/work-pages/**/*.{jpg,jpeg,png,webp}');
+
+async function thumbFor(page: (typeof work)[number]) {
+  const key = page.thumb?.replace('./', '../../assets/');
+  if (!key || !thumbs[key]) throw new Error(`Missing thumb for ${page.slug}`);
+  return (await thumbs[key]()).default;
+}
+
+const tiles = await Promise.all(
+  work.map(async (p) => ({ slug: p.slug, title: p.title, img: await thumbFor(p) }))
+);
+---
+
+<Base
+  title="Work — Clockwork 9"
+  description="A collection of Clockwork 9's favorite video production projects — Nike, Ernst & Young, Charles Schwab, the Cleveland Orchestra, and more."
+>
+  <section class="work-header">
+    <h1 class="display display-grad">Work</h1>
+    <p class="work-sub">A collection of our favorite projects</p>
+  </section>
+
+  <section class="work-grid" aria-label="Projects">
+    {tiles.map(({ slug, title, img }) => (
+      <a href={`/work/${slug}/`} class="work-tile">
+        <Image src={img} alt="" widths={[480, 720, 1080]} sizes="(max-width: 720px) 100vw, 50vw" />
+        <span class="tile-label">{title}</span>
+      </a>
+    ))}
+  </section>
+</Base>
+
+<style>
+  .work-header {
+    text-align: center;
+    padding: clamp(3rem, 7vw, 5.5rem) 1.5rem 0;
+  }
+  .work-header h1 {
+    font-size: clamp(2.4rem, 5.4vw, 4.4rem);
+    text-transform: lowercase;
+  }
+  .work-sub {
+    font-style: italic;
+    color: var(--ink-muted);
+    margin-top: 1rem;
+  }
+
+  .work-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    padding: 3rem clamp(1.25rem, 4vw, 2.5rem) 0;
+  }
+  .work-tile {
+    position: relative;
+    display: block;
+    overflow: hidden;
+  }
+  .work-tile img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+  }
+  .work-tile:hover img { transform: scale(1.02); }
+  .tile-label {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 2.5rem 1.25rem 1rem;
+    background: linear-gradient(transparent, rgba(16, 16, 15, 0.85));
+    color: var(--color-c9-cream);
+    font-family: var(--font-label);
+    font-size: 0.9rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  /* graceful non-full rows: a lone final tile stays tile-sized, centered */
+  .work-tile:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    width: calc(50% - 0.75rem);
+    justify-self: center;
+  }
+  @media (max-width: 720px) {
+    .work-tile:last-child:nth-child(odd) { width: 100%; }
+  }
+
+  @media (max-width: 720px) {
+    .work-grid { grid-template-columns: 1fr; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .work-tile img { transition: none; }
+  }
+</style>

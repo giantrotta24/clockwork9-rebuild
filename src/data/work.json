@@ -1,0 +1,405 @@
+[
+  {
+    "slug": "ernst-young",
+    "title": "Ernst & Young",
+    "subtitle": "EY partners with Nottingham Spirk to answer the question: \"Why Innovate?\"",
+    "vimeoIds": [
+      "1045162328"
+    ],
+    "gallery": [],
+    "related": [
+      "nike",
+      "progressive-life-insurance",
+      "charles-schwab"
+    ],
+    "thumb": "./work-pages/ernst-young/ey-site-thumbnail.jpg",
+    "order": 0
+  },
+  {
+    "slug": "university-of-notre-dame",
+    "title": "University of Notre Dame",
+    "subtitle": "\"Momentum\" - Mendoza College of Business",
+    "vimeoIds": [
+      "1123942820"
+    ],
+    "gallery": [],
+    "related": [
+      "ernst-young",
+      "nike",
+      "progressive-life-insurance"
+    ],
+    "thumb": "./work-pages/university-of-notre-dame/video-production-agency-mendoza.jpg",
+    "order": 1
+  },
+  {
+    "slug": "fanatics",
+    "title": "Fanatics",
+    "subtitle": "Fanatics Fest in NYC circa 2024",
+    "vimeoIds": [
+      "1057928236"
+    ],
+    "gallery": [],
+    "related": [
+      "c9-live-event-reel",
+      "plex",
+      "found-surface"
+    ],
+    "thumb": "./work-pages/fanatics/Fanatics-Thumbnail-650x366.jpg",
+    "order": 2
+  },
+  {
+    "slug": "c9-2025-reel",
+    "title": "C9 2025 Reel",
+    "subtitle": "A showcase of our favorite projects",
+    "vimeoIds": [
+      "1054202839"
+    ],
+    "gallery": [],
+    "related": [
+      "ernst-young",
+      "nike",
+      "progressive-life-insurance"
+    ],
+    "thumb": "./work-pages/c9-2025-reel/reel-thumb-3-650x366.jpg",
+    "order": 3
+  },
+  {
+    "slug": "c9-live-event-reel",
+    "title": "C9 Live Event Reel",
+    "subtitle": "A compilation of events that we've captured",
+    "vimeoIds": [
+      "841030911"
+    ],
+    "gallery": [],
+    "related": [
+      "fanatics",
+      "the-cleveland-orchestra",
+      "cavs-cleveland-art-museum"
+    ],
+    "thumb": "./work-pages/c9-live-event-reel/live-event-reel-thumb-1-650x366.jpg",
+    "order": 4
+  },
+  {
+    "slug": "progressive-life-insurance",
+    "title": "Progressive Life Insurance",
+    "subtitle": "Get a personalized quote in just minutes",
+    "vimeoIds": [
+      "855366401"
+    ],
+    "gallery": [],
+    "related": [
+      "rust-belt-riders",
+      "nidec-press-automation",
+      "squirrels"
+    ],
+    "thumb": "./work-pages/progressive-life-insurance/progressive-life-insurance-650x366.jpg",
+    "order": 5
+  },
+  {
+    "slug": "nike",
+    "title": "Nike",
+    "subtitle": "Cleveland Never Stops",
+    "vimeoIds": [
+      "774414825"
+    ],
+    "gallery": [],
+    "related": [
+      "squirrels",
+      "nidec-press-automation",
+      "aotl-06-starbeing"
+    ],
+    "thumb": "./work-pages/nike/nike-site-thumbnail-2-650x366.jpg",
+    "order": 6
+  },
+  {
+    "slug": "found-surface",
+    "title": "Found Surface",
+    "subtitle": "\"Join us as we create value and quality for all\"",
+    "vimeoIds": [
+      "1063364177"
+    ],
+    "gallery": [],
+    "related": [
+      "aotl-05-doug-katz",
+      "the-cleveland-orchestra",
+      "c9-2025-reel"
+    ],
+    "thumb": "./work-pages/found-surface/fs-home-c9.jpg",
+    "order": 7
+  },
+  {
+    "slug": "plex",
+    "title": "Plex",
+    "subtitle": "Theater of Dreams",
+    "vimeoIds": [
+      "912356026"
+    ],
+    "gallery": [],
+    "related": [
+      "aotl-02-arko-picture-framing",
+      "progressive-life-insurance",
+      "aotl-05-doug-katz"
+    ],
+    "thumb": "./work-pages/plex/plex-site-thumbnail-650x366.jpg",
+    "order": 8
+  },
+  {
+    "slug": "anderson-international",
+    "title": "Anderson International",
+    "subtitle": "Engineering solutions that power industries worldwide",
+    "vimeoIds": [
+      "1107882742"
+    ],
+    "gallery": [],
+    "related": [
+      "aotl-05-doug-katz",
+      "nidec-press-automation",
+      "c9-live-event-reel"
+    ],
+    "thumb": "./work-pages/anderson-international/Anderson-International-650x366.jpg",
+    "order": 9
+  },
+  {
+    "slug": "rust-belt-riders",
+    "title": "Rust Belt Riders",
+    "subtitle": "\"I love to compost\"",
+    "vimeoIds": [
+      "765791639"
+    ],
+    "gallery": [],
+    "related": [
+      "progressive-life-insurance",
+      "nidec-press-automation",
+      "squirrels"
+    ],
+    "thumb": "./work-pages/rust-belt-riders/compost-site-thumb-650x366.jpg",
+    "order": 10
+  },
+  {
+    "slug": "the-cleveland-orchestra",
+    "title": "The Cleveland Orchestra",
+    "subtitle": "Composer Fellowship",
+    "vimeoIds": [
+      "994211983"
+    ],
+    "gallery": [],
+    "related": [
+      "nidec-press-automation",
+      "aotl-03-cleveland-print-co",
+      "c9-2025-reel"
+    ],
+    "thumb": "./work-pages/the-cleveland-orchestra/composer-res-thumb-2-650x366.jpg",
+    "order": 11
+  },
+  {
+    "slug": "charles-schwab",
+    "title": "Charles Schwab",
+    "subtitle": "Employee Success",
+    "vimeoIds": [
+      "1065197440"
+    ],
+    "gallery": [],
+    "related": [
+      "fanatics",
+      "aotl-03-cleveland-print-co",
+      "nottingham-spirk"
+    ],
+    "thumb": "./work-pages/charles-schwab/schwab-site-still-3-650x366.jpg",
+    "order": 12
+  },
+  {
+    "slug": "nidec-press-automation",
+    "title": "Nidec Press & Automation",
+    "subtitle": "Total System Solution",
+    "vimeoIds": [
+      "1063229686"
+    ],
+    "gallery": [],
+    "related": [
+      "progressive-life-insurance",
+      "rust-belt-riders",
+      "squirrels"
+    ],
+    "thumb": "./work-pages/nidec-press-automation/Nidec-Website-Still-650x366.jpg",
+    "order": 13
+  },
+  {
+    "slug": "scenario-trainer",
+    "title": "Scenario Trainer",
+    "subtitle": "GunSHOT Box",
+    "vimeoIds": [
+      "855365406"
+    ],
+    "gallery": [],
+    "related": [
+      "nidec-press-automation",
+      "anderson-international",
+      "plex"
+    ],
+    "thumb": "./work-pages/scenario-trainer/ST-Site-Still-2-650x366.jpg",
+    "order": 14
+  },
+  {
+    "slug": "cavs-cleveland-art-museum",
+    "title": "Cavs x Cleveland Art Museum",
+    "subtitle": "Special promo with Gangster Granny & the Cleveland Cavaliers",
+    "vimeoIds": [],
+    "gallery": [
+      "./work-pages/cavs-cleveland-art-museum/IMG_2554-1024x683.jpg",
+      "./work-pages/cavs-cleveland-art-museum/IMG_2664-683x1024.jpg",
+      "./work-pages/cavs-cleveland-art-museum/IMG_2633-1024x683.jpg",
+      "./work-pages/cavs-cleveland-art-museum/IMG_2440-1024x683.jpg"
+    ],
+    "related": [
+      "charles-schwab",
+      "c9-2025-reel",
+      "aotl-02-arko-picture-framing"
+    ],
+    "thumb": "./work-pages/cavs-cleveland-art-museum/gran-home-c9.jpg",
+    "order": 15
+  },
+  {
+    "slug": "aotl-trailer",
+    "title": "AOTL: Trailer",
+    "subtitle": "Cleveland, like many ‘rust belt’ cities, too often doesn’t get the recognition it deserves. Craftsmanship and artistry aren’t exclusive to what most commonly consider ‘art.’ Artisans of the Land is a short-form documentary series produced by Clockwork 9 featuring Cleveland entrepreneurs who have evolved their artistic talent into successful enterprises.",
+    "vimeoIds": [
+      "777620730"
+    ],
+    "gallery": [],
+    "related": [
+      "aotl-black-cat-barbershop",
+      "aotl-02-arko-picture-framing",
+      "aotl-03-cleveland-print-co"
+    ],
+    "thumb": "./work-pages/aotl-trailer/aotl-trailer-thumbnail-650x366.jpg",
+    "order": 16
+  },
+  {
+    "slug": "aotl-black-cat-barbershop",
+    "title": "AOTL: 01 Black Cat Barbershop",
+    "subtitle": "Featuring Ryan Hardwick, Patrick Corrigan, and their brainchild Black Cat Barbershop. A ‘punk rock’ Barbershop they always wanted to build.",
+    "vimeoIds": [
+      "777165328"
+    ],
+    "gallery": [],
+    "related": [
+      "aotl-trailer",
+      "aotl-02-arko-picture-framing",
+      "aotl-03-cleveland-print-co"
+    ],
+    "thumb": "./work-pages/aotl-black-cat-barbershop/black-cat-650x366.jpg",
+    "order": 17
+  },
+  {
+    "slug": "aotl-02-arko-picture-framing",
+    "title": "AOTL: 02 Arko Picture Framing",
+    "subtitle": "Joe Arko has framed just about anything you can imagine. For almost 30 years, he has refined his framing style into a skill few others can approach.",
+    "vimeoIds": [
+      "787735288"
+    ],
+    "gallery": [],
+    "related": [
+      "aotl-trailer",
+      "aotl-03-cleveland-print-co",
+      "aotl-04-billy-ritter-77"
+    ],
+    "thumb": "./work-pages/aotl-02-arko-picture-framing/arko-framing-650x366.jpg",
+    "order": 18
+  },
+  {
+    "slug": "aotl-03-cleveland-print-co",
+    "title": "AOTL: 03 Cleveland Print Co.",
+    "subtitle": "A labor of love for Ryan & Garth, Cleveland Print Co. is a screen printing shop driven by a love of music, life, illustration, and the highest quality custom printing around.",
+    "vimeoIds": [
+      "789872806"
+    ],
+    "gallery": [],
+    "related": [
+      "aotl-trailer",
+      "aotl-04-billy-ritter-77",
+      "aotl-05-doug-katz"
+    ],
+    "thumb": "./work-pages/aotl-03-cleveland-print-co/cle-print-co-thumbnail-650x366.jpg",
+    "order": 19
+  },
+  {
+    "slug": "aotl-04-billy-ritter-77",
+    "title": "AOTL: 04 Billy Ritter 77",
+    "subtitle": "“Handmade Ceramic Wares” only begins to describe the journey of Billy Ritter and his relentless spirit. Take a peek into the world of a Cleveland legend.",
+    "vimeoIds": [
+      "792029228"
+    ],
+    "gallery": [],
+    "related": [
+      "aotl-trailer",
+      "aotl-05-doug-katz",
+      "aotl-06-starbeing"
+    ],
+    "thumb": "./work-pages/aotl-04-billy-ritter-77/ritter-thumb-650x366.jpg",
+    "order": 20
+  },
+  {
+    "slug": "aotl-05-doug-katz",
+    "title": "AOTL: 05 Doug Katz",
+    "subtitle": "Doug is well known in Cleveland for restaurants like Fire, Zhug, and Amba. But behind all those restaurants is a mind steeped in knowledge and a passion for food, people, and exploration like you’ve never seen.",
+    "vimeoIds": [
+      "794309376"
+    ],
+    "gallery": [],
+    "related": [
+      "aotl-trailer",
+      "aotl-06-starbeing",
+      "aotl-black-cat-barbershop"
+    ],
+    "thumb": "./work-pages/aotl-05-doug-katz/katz-thumb-650x366.jpg",
+    "order": 21
+  },
+  {
+    "slug": "aotl-06-starbeing",
+    "title": "AOTL: 06 Starbeing",
+    "subtitle": "If you’ve ever found yourself staring at a mural somewhere around Cleveland, chances are Isaiah Williams (AKA Starbeing) is the brilliant mind behind it.",
+    "vimeoIds": [
+      "796440295"
+    ],
+    "gallery": [],
+    "related": [
+      "aotl-trailer",
+      "aotl-black-cat-barbershop",
+      "aotl-02-arko-picture-framing"
+    ],
+    "thumb": "./work-pages/aotl-06-starbeing/starbeing-thumbnail-650x366.jpg",
+    "order": 22
+  },
+  {
+    "slug": "nottingham-spirk",
+    "title": "Nottingham Spirk",
+    "subtitle": "The path to possible",
+    "vimeoIds": [
+      "1021780773"
+    ],
+    "gallery": [],
+    "related": [
+      "c9-live-event-reel",
+      "found-surface",
+      "scenario-trainer"
+    ],
+    "thumb": "./work-pages/nottingham-spirk/p2p-thumbnail-2-650x366.jpg",
+    "order": 23
+  },
+  {
+    "slug": "squirrels",
+    "title": "Squirrels",
+    "subtitle": "AirParrot 3",
+    "vimeoIds": [
+      "718040306"
+    ],
+    "gallery": [],
+    "related": [
+      "progressive-life-insurance",
+      "rust-belt-riders",
+      "nidec-press-automation"
+    ],
+    "thumb": "./work-pages/squirrels/squirrels-site-thumb-650x366.jpg",
+    "order": 24
+  }
+]

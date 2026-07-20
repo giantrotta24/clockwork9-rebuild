@@ -1,0 +1,164 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+import VimeoEmbed from '../../components/VimeoEmbed.astro';
+import work from '../../data/work.json';
+
+export async function getStaticPaths() {
+  return work.map((page) => ({ params: { slug: page.slug }, props: { page } }));
+}
+
+interface Props {
+  page: (typeof work)[number];
+}
+const { page } = Astro.props;
+
+const images = import.meta.glob<{ default: ImageMetadata }>('../../assets/work-pages/**/*.{jpg,jpeg,png,webp}');
+const resolve = async (rel: string) => {
+  const key = rel.replace('./', '../../assets/');
+  if (!images[key]) throw new Error(`Missing image ${rel} for ${page.slug}`);
+  return (await images[key]()).default;
+};
+
+const gallery = await Promise.all(page.gallery.map(resolve));
+
+const related = await Promise.all(
+  page.related
+    .map((slug) => work.find((p) => p.slug === slug))
+    .filter((p): p is (typeof work)[number] => Boolean(p?.thumb))
+    .map(async (p) => ({ slug: p.slug, title: p.title, img: await resolve(p.thumb!) }))
+);
+---
+
+<Base title={`${page.title} — Clockwork 9`} description={page.subtitle || `${page.title} — a Clockwork 9 production.`}>
+  <article>
+    <header class="project-header">
+      <h1 class="display">{page.title}</h1>
+      {page.subtitle && <p class="project-subtitle">{page.subtitle}</p>}
+    </header>
+
+    {page.vimeoIds.map((id, i) => (
+      <div class="project-video">
+        <VimeoEmbed id={id} title={page.vimeoIds.length > 1 ? `${page.title} — video ${i + 1}` : page.title} />
+      </div>
+    ))}
+
+    {gallery.length > 0 && (
+      <div class="project-gallery" role="group" aria-label={`${page.title} photo gallery`}>
+        {gallery.map((img) => (
+          <Image src={img} alt="" widths={[480, 720, 1080]} sizes="(max-width: 720px) 100vw, 50vw" />
+        ))}
+      </div>
+    )}
+
+    <section class="related" aria-labelledby="related-heading">
+      <h2 class="related-heading" id="related-heading">
+        <a href="/work">View more projects →</a>
+      </h2>
+      <div class="related-grid">
+        {related.map(({ slug, title, img }) => (
+          <a href={`/work/${slug}/`} class="related-item">
+            <Image src={img} alt="" widths={[480, 720]} sizes="(max-width: 720px) 100vw, 33vw" />
+            <span class="tile-label">{title}</span>
+          </a>
+        ))}
+      </div>
+    </section>
+  </article>
+</Base>
+
+<style>
+  .project-header {
+    padding: clamp(3rem, 7vw, 5.5rem) clamp(1.25rem, 4vw, 2.5rem) 0;
+  }
+  .project-header h1 {
+    font-size: clamp(2.2rem, 5.4vw, 4.4rem);
+    text-transform: lowercase;
+    background: linear-gradient(90deg, var(--color-c9-cream) 0%, var(--color-c9-orange) 90%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    width: fit-content;
+  }
+  .project-subtitle {
+    font-style: italic;
+    color: var(--ink-muted);
+    margin-top: 0.9rem;
+    font-size: 1.1rem;
+  }
+
+  .project-video,
+  .project-gallery {
+    padding: 2.5rem clamp(1.25rem, 4vw, 2.5rem) 0;
+  }
+  .project-gallery {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  .project-gallery img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  @media (max-width: 720px) {
+    .project-gallery { grid-template-columns: 1fr; }
+  }
+
+  .related {
+    margin-top: 5rem;
+    padding: 0 clamp(1.25rem, 4vw, 2.5rem);
+  }
+  .related-heading {
+    font-family: var(--font-label);
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1.6rem;
+  }
+  .related-heading a {
+    color: var(--color-c9-cream);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  .related-heading a:hover { color: var(--color-c9-orange); }
+  .related-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .related-item {
+    position: relative;
+    display: block;
+    overflow: hidden;
+  }
+  .related-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+  }
+  .related-item:hover img { transform: scale(1.02); }
+  .tile-label {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 2rem 1rem 0.8rem;
+    background: linear-gradient(transparent, rgba(16, 16, 15, 0.85));
+    color: var(--color-c9-cream);
+    font-family: var(--font-label);
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  @media (max-width: 720px) {
+    .related-grid { grid-template-columns: 1fr; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .related-item img { transition: none; }
+  }
+</style>
