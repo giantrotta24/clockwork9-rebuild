@@ -1,0 +1,21 @@
+# ─────────────────────────────────────────────────────────────────────
+# PREVIEW GUARD — REMOVE THE X-Robots-Tag HEADER AT DOMAIN CUTOVER.
+#
+# While this site lives on a netlify.app URL it must NOT be indexable:
+# it is a full copy of clockwork9.com's content and would otherwise be
+# crawlable duplicate content competing with the live site. Canonicals
+# already point at clockwork9.com; this header is the hard stop.
+#
+# Cutover checklist item: delete the header block below when the real
+# domain points here — shipping the live site with noindex would
+# recreate the exact bug this rebuild exists to fix.
+# ─────────────────────────────────────────────────────────────────────
+
+[build]
+  command = "pnpm build"
+  publish = "dist"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Robots-Tag = "noindex"
